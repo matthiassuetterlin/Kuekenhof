@@ -166,6 +166,38 @@
       font-size: 0.75rem; font-weight: 700; color: var(--green);
       background: #e8f3eb; padding: 0.25rem 0.55rem; border-radius: 999px;
     }
+
+    .card { position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(42, 33, 24, 0.12);
+    }
+    .card-traits {
+      position: absolute; inset: 0;
+      background: rgba(42, 33, 24, 0.92);
+      color: #fff8ef;
+      padding: 1rem 1.1rem;
+      display: flex; flex-direction: column; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      border-radius: 1.1rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .card:hover .card-traits,
+    .card:focus-within .card-traits {
+      opacity: 1; visibility: visible;
+    }
+    .card-traits strong {
+      display: block; margin-bottom: 0.55rem;
+      font-size: 0.95rem; color: #ffd989;
+    }
+    .card-traits ul {
+      margin: 0; padding-left: 1.1rem;
+      font-size: 0.88rem; line-height: 1.45; color: #fff1dc;
+    }
+    .card-traits li { margin: 0.2rem 0; }
+
     .about-panel {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -291,7 +323,16 @@
           <p>Beispielangebote — Preise und Bestände kannst du jederzeit anpassen.</p>
         </div>
         <div class="cards">
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Sunny</strong>
+              <ul>
+              <li>Temperament: neugierig & freundlich</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: liebt Gesellschaft</li>
+              <li>Pflege: einfach für Einsteiger</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Sunny</h3>
@@ -300,7 +341,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Pippa</strong>
+              <ul>
+              <li>Temperament: aktiv & wach</li>
+              <li>Lautstärke: etwas laut</li>
+              <li>Sozial: Alpha-Tendenz</li>
+              <li>Pflege: viel Auslauf nötig</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Pippa</h3>
@@ -309,7 +359,16 @@
               <span class="tag">Wenige übrig</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Momo</strong>
+              <ul>
+              <li>Temperament: ruhig & sanft</li>
+              <li>Lautstärke: leise</li>
+              <li>Sozial: hält sich im Hintergrund</li>
+              <li>Pflege: Wärme besonders wichtig</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Momo</h3>
@@ -318,7 +377,16 @@
               <span class="tag">Vorbestellbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Luna</strong>
+              <ul>
+              <li>Temperament: ausgeglichen</li>
+              <li>Lautstärke: niedrig</li>
+              <li>Sozial: sehr verträglich</li>
+              <li>Pflege: mittelschwer</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Luna</h3>
@@ -327,7 +395,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Bruno</strong>
+              <ul>
+              <li>Temperament: gemütlich</li>
+              <li>Lautstärke: leise</li>
+              <li>Sozial: kuschelig in der Gruppe</li>
+              <li>Pflege: leicht, mag Ruhe</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Bruno</h3>
@@ -336,7 +413,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Mila</strong>
+              <ul>
+              <li>Temperament: ausdauernd</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: gut im Schwarm</li>
+              <li>Pflege: robust, wenig Extra</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Mila</h3>
@@ -345,7 +431,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Nori</strong>
+              <ul>
+              <li>Temperament: selbstbewusst</li>
+              <li>Lautstärke: mittel–hoch</li>
+              <li>Sozial: bestimmt die Rangordnung</li>
+              <li>Pflege: feste Routine</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Nori</h3>
@@ -354,7 +449,16 @@
               <span class="tag">Wenige übrig</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Pepper</strong>
+              <ul>
+              <li>Temperament: verspielt</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: Teamplayer</li>
+              <li>Pflege: Beschäftigung gefragt</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Pepper</h3>
@@ -363,7 +467,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Flocke</strong>
+              <ul>
+              <li>Temperament: zärtlich</li>
+              <li>Lautstärke: leise</li>
+              <li>Sozial: sucht Nähe</li>
+              <li>Pflege: trockene Haltung wichtig</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Flocke</h3>
@@ -372,7 +485,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Theo</strong>
+              <ul>
+              <li>Temperament: gutmütig</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: freundlich zu Artgenossen</li>
+              <li>Pflege: Standardbedarf</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Theo</h3>
@@ -381,7 +503,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Kira</strong>
+              <ul>
+              <li>Temperament: gelassen</li>
+              <li>Lautstärke: niedrig</li>
+              <li>Sozial: friedlich</li>
+              <li>Pflege: mehr Platz & Futter</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Kira</h3>
@@ -390,7 +521,16 @@
               <span class="tag">Vorbestellbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Ollie</strong>
+              <ul>
+              <li>Temperament: wachsam</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: eher unabhängig</li>
+              <li>Pflege: sicherer Auslauf</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Ollie</h3>
@@ -399,7 +539,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Bella</strong>
+              <ul>
+              <li>Temperament: zutraulich</li>
+              <li>Lautstärke: niedrig–mittel</li>
+              <li>Sozial: menschenbezogen</li>
+              <li>Pflege: leicht handzahm</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Bella</h3>
@@ -408,7 +557,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Finn</strong>
+              <ul>
+              <li>Temperament: standfest</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: stabile Gruppe</li>
+              <li>Pflege: wetterfest, wenig Drama</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Finn</h3>
@@ -417,7 +575,16 @@
               <span class="tag">Wenige übrig</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Sissi</strong>
+              <ul>
+              <li>Temperament: lebhaft & scheu</li>
+              <li>Lautstärke: hoch</li>
+              <li>Sozial: kleine Gruppen besser</li>
+              <li>Pflege: Schutz vor Nässe</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Sissi</h3>
@@ -426,7 +593,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Max</strong>
+              <ul>
+              <li>Temperament: flink</li>
+              <li>Lautstärke: etwas laut</li>
+              <li>Sozial: dominant möglich</li>
+              <li>Pflege: viel Bewegung</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Max</h3>
@@ -435,7 +611,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Ellie</strong>
+              <ul>
+              <li>Temperament: gesellig</li>
+              <li>Lautstärke: lautfreudig</li>
+              <li>Sozial: braucht Schwarm</li>
+              <li>Pflege: Beschäftigung & Platz</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Ellie</h3>
@@ -444,7 +629,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Hugo</strong>
+              <ul>
+              <li>Temperament: verschmust</li>
+              <li>Lautstärke: sehr leise</li>
+              <li>Sozial: anhänglich</li>
+              <li>Pflege: Wärme & weiche Einstreu</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐥</div>
             <div class="card-body">
               <h3>Hugo</h3>
@@ -453,7 +647,16 @@
               <span class="tag">Wenige übrig</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Nala</strong>
+              <ul>
+              <li>Temperament: robust</li>
+              <li>Lautstärke: mittel</li>
+              <li>Sozial: unkompliziert</li>
+              <li>Pflege: guter Appetit einplanen</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐣</div>
             <div class="card-body">
               <h3>Nala</h3>
@@ -462,7 +665,16 @@
               <span class="tag">Verfügbar</span>
             </div>
           </article>
-          <article class="card">
+          <article class="card" tabindex="0">
+            <div class="card-traits" aria-hidden="true">
+              <strong>Charakter · Zuzu</strong>
+              <ul>
+              <li>Temperament: charaktervoll</li>
+              <li>Lautstärke: hoch</li>
+              <li>Sozial: flink & wach</li>
+              <li>Pflege: sichere Einzäunung</li>
+              </ul>
+            </div>
             <div class="card-media" aria-hidden="true">🐤</div>
             <div class="card-body">
               <h3>Zuzu</h3>
