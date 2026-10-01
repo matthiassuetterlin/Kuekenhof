@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matthias — Website</title>
+  <title>Kükenhof — Frische Küken kaufen</title>
   <style>
     :root {
-      --bg: #f6f5f2;
+      --bg: #fff8ef;
       --surface: #ffffff;
-      --ink: #1c1b19;
-      --muted: #5c5a55;
-      --line: #e4e1da;
-      --accent: #2f5d50;
-      --accent-soft: #e7f0ec;
+      --ink: #2a2118;
+      --muted: #6b5b4a;
+      --line: #edd9c0;
+      --accent: #e09a2b;
+      --accent-deep: #c47818;
+      --green: #4a7c59;
+      --soft: #fff1dc;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -20,214 +22,293 @@
       margin: 0;
       font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
       color: var(--ink);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top right, #ffe7c2 0%, transparent 40%),
+        var(--bg);
       line-height: 1.6;
     }
-    a { color: var(--accent); text-decoration: none; }
+    a { color: var(--green); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .wrap {
-      width: min(960px, calc(100% - 2.5rem));
-      margin-inline: auto;
-    }
+    .wrap { width: min(1040px, calc(100% - 2rem)); margin-inline: auto; }
     header {
-      position: sticky;
-      top: 0;
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255, 248, 239, 0.92);
       backdrop-filter: blur(10px);
-      background: rgba(246, 245, 242, 0.9);
       border-bottom: 1px solid var(--line);
-      z-index: 10;
     }
     .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0;
-      gap: 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.95rem 0; gap: 1rem;
     }
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.25rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 0.95rem;
-    }
-    .nav-links a { color: var(--muted); text-decoration: none; }
-    .nav-links a:hover { color: var(--ink); }
-    .hero {
-      padding: 5.5rem 0 4rem;
-    }
-    .hero-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 1.25rem;
-      padding: clamp(2rem, 5vw, 3.5rem);
-      box-shadow: 0 12px 40px rgba(28, 27, 25, 0.05);
-    }
-    .eyebrow {
-      display: inline-block;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      margin: 0 0 0.75rem;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-    .lead {
-      margin: 0;
-      max-width: 36rem;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.75rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.2rem;
-      border-radius: 999px;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid transparent;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { filter: brightness(1.05); text-decoration: none; }
-    .btn-ghost {
-      background: transparent;
-      color: var(--ink);
-      border-color: var(--line);
-    }
-    .btn-ghost:hover { background: #fff; text-decoration: none; }
-    .about {
-      padding: 1rem 0 4.5rem;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 1.25rem;
-    }
-    @media (max-width: 720px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 0.85rem; font-size: 0.88rem; }
-    }
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      padding: 1.5rem;
-    }
-    .panel h2 {
-      margin: 0 0 0.6rem;
-      font-size: 1.35rem;
+    .brand {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-weight: 800; color: var(--ink); text-decoration: none;
       letter-spacing: -0.02em;
     }
-    .panel p { margin: 0; color: var(--muted); }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
+    .brand-mark {
+      width: 2rem; height: 2rem; border-radius: 999px;
+      background: linear-gradient(145deg, #ffd56a, #f0a429);
+      display: grid; place-items: center; font-size: 1.05rem;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
     }
-    .chip {
+    .nav-links {
+      display: flex; gap: 1.1rem; list-style: none; margin: 0; padding: 0;
+      font-size: 0.95rem;
+    }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .nav-links a:hover { color: var(--ink); }
+    .hero { padding: 3.5rem 0 2.5rem; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.5rem; align-items: center;
+    }
+    .hero-copy {
+      background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.35rem 0.7rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #fafaf8;
+      border-radius: 1.4rem;
+      padding: clamp(1.5rem, 4vw, 2.6rem);
+      box-shadow: 0 16px 40px rgba(42, 33, 24, 0.06);
     }
+    .eyebrow {
+      display: inline-block; margin-bottom: 0.8rem;
+      padding: 0.28rem 0.7rem; border-radius: 999px;
+      background: var(--soft); color: var(--accent-deep);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 0.7rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.12; letter-spacing: -0.03em;
+    }
+    .lead { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 34rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.75rem 1.15rem; border-radius: 999px; font-weight: 700;
+      text-decoration: none; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: #1f160d; }
+    .btn-primary:hover { background: var(--accent-deep); color: #fff; text-decoration: none; }
+    .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+    .btn-ghost:hover { background: #fff; text-decoration: none; }
+    .hero-art {
+      background: linear-gradient(160deg, #ffe8b8, #ffd07a 55%, #f6b24a);
+      border: 1px solid #f0c878;
+      border-radius: 1.4rem;
+      min-height: 280px;
+      display: grid; place-items: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 16px 40px rgba(42, 33, 24, 0.08);
+    }
+    .chick-placeholder {
+      width: min(220px, 70%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff7c8, #ffcc4d 55%, #f0a429);
+      display: grid; place-items: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .chick-placeholder::before,
+    .chick-placeholder::after {
+      content: ""; position: absolute; width: 14%; height: 14%;
+      background: #1c140f; border-radius: 50%; top: 38%;
+    }
+    .chick-placeholder::before { left: 30%; }
+    .chick-placeholder::after { right: 30%; }
+    .beak {
+      position: absolute; top: 48%; left: 50%; transform: translate(-50%, 0);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 14px solid #ef7d2e;
+    }
+    .hero-caption {
+      position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.82); border-radius: 0.8rem;
+      padding: 0.65rem 0.85rem; font-size: 0.9rem; color: var(--muted);
+      text-align: center;
+    }
+    section { padding: 1.5rem 0 3rem; }
+    .section-head { margin-bottom: 1.2rem; }
+    .section-head h2 {
+      margin: 0 0 0.35rem; font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(42, 33, 24, 0.05);
+      display: flex; flex-direction: column;
+    }
+    .card-media {
+      height: 140px;
+      background: linear-gradient(145deg, #fff3d1, #ffd989);
+      display: grid; place-items: center;
+      font-size: 3rem;
+    }
+    .card-body { padding: 1.05rem 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { margin: 0 0 0.25rem; font-size: 1.15rem; }
+    .price {
+      font-weight: 800; color: var(--accent-deep); margin: 0 0 0.55rem;
+    }
+    .card-body p { margin: 0; color: var(--muted); font-size: 0.95rem; flex: 1; }
+    .tag {
+      display: inline-block; margin-top: 0.85rem;
+      font-size: 0.75rem; font-weight: 700; color: var(--green);
+      background: #e8f3eb; padding: 0.25rem 0.55rem; border-radius: 999px;
+    }
+    .about-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1.2rem;
+      padding: clamp(1.3rem, 3vw, 2rem);
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem;
+    }
+    .about-panel h2 { margin: 0 0 0.5rem; }
+    .about-panel p { margin: 0; color: var(--muted); }
+    .facts { display: grid; gap: 0.7rem; }
+    .fact {
+      background: var(--soft); border-radius: 0.85rem; padding: 0.85rem 1rem;
+      border: 1px solid #f0dfc2;
+    }
+    .fact strong { display: block; margin-bottom: 0.15rem; }
+    .fact span { color: var(--muted); font-size: 0.92rem; }
     footer {
       border-top: 1px solid var(--line);
-      padding: 1.5rem 0 2.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
+      padding: 1.6rem 0 2.4rem;
+      color: var(--muted); font-size: 0.92rem;
     }
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .footer-grid {
+      display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1rem;
+    }
+    footer h3 { margin: 0 0 0.45rem; color: var(--ink); font-size: 1rem; }
+    footer p, footer a { margin: 0.15rem 0; display: block; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+    @media (max-width: 860px) {
+      .hero-grid, .cards, .about-panel, .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 0.75rem; font-size: 0.86rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <a class="logo" href="#top">Matthias</a>
+      <a class="brand" href="#top"><span class="brand-mark">🐤</span> Kükenhof</a>
       <ul class="nav-links">
-        <li><a href="#top">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#kueken">Küken</a></li>
+        <li><a href="#about">Über uns</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="wrap">
-        <div class="hero-card">
-          <span class="eyebrow">Personal website</span>
-          <h1>Hallo — willkommen auf meiner Seite.</h1>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Frisch · Gesund · Lokal</span>
+          <h1>Fröhliche Küken für deinen Hof.</h1>
           <p class="lead">
-            Eine schlichte Startseite mit klarer Struktur. Wir können Farbe,
-            Layout und Inhalte Schritt für Schritt anpassen.
+            Willkommen im Kükenhof. Wir verkaufen gesunde, handaufgezogene Küken —
+            ideal für Einsteiger und erfahrene Halter. Warm, freundlich und ohne Schnickschnack.
           </p>
           <div class="actions">
-            <a class="btn btn-primary" href="#about">Mehr erfahren</a>
-            <a class="btn btn-ghost" href="#contact">Kontakt</a>
+            <a class="btn btn-primary" href="#kueken">Küken ansehen</a>
+            <a class="btn btn-ghost" href="#kontakt">Anfrage senden</a>
           </div>
+        </div>
+        <div class="hero-art" aria-label="Küken Platzhalterbild">
+          <div class="chick-placeholder"><span class="beak"></span></div>
+          <div class="hero-caption">Platzhalter — später dein bestes Kükenfoto</div>
         </div>
       </div>
     </section>
 
-    <section class="about" id="about">
-      <div class="wrap about-grid">
-        <article class="panel">
-          <h2>Über mich</h2>
-          <p>
-            Hier entsteht eine persönliche Website. Derzeit ist es ein
-            modernes Grundgerüst — Header, Hero, About und Footer —
-            bereit für dein Feedback und die nächsten Design-Ideen.
-          </p>
-        </article>
-        <aside class="panel">
-          <h2>Fokus</h2>
-          <p>Einfach, lesbar und responsive. Neutrale Farben, viel Ruhe.</p>
-          <div class="chips">
-            <span class="chip">Clean layout</span>
-            <span class="chip">Inline CSS</span>
-            <span class="chip">Mobile-friendly</span>
+    <section id="kueken">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Aktuell verfügbare Küken</h2>
+          <p>Beispielangebote — Preise und Bestände kannst du jederzeit anpassen.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-media" aria-hidden="true">🐣</div>
+            <div class="card-body">
+              <h3>Sunny</h3>
+              <p class="price">12 €</p>
+              <p>Flauschiges gelbes Küken, sehr neugierig und handzahm. Ideal für Familien.</p>
+              <span class="tag">Verfügbar</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media" aria-hidden="true">🐤</div>
+            <div class="card-body">
+              <h3>Pippa</h3>
+              <p class="price">14 €</p>
+              <p>Kräftiges Jungtier mit starker Neugier. Gut für den Einstieg in die Haltung.</p>
+              <span class="tag">Wenige übrig</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media" aria-hidden="true">🐥</div>
+            <div class="card-body">
+              <h3>Momo</h3>
+              <p class="price">11 €</p>
+              <p>Ruhiges Küken, mag Wärme und Futterpausen. Perfekt für ruhige Ställe.</p>
+              <span class="tag">Vorbestellbar</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="about-panel">
+          <div>
+            <h2>Über den Kükenhof</h2>
+            <p>
+              Wir ziehen unsere Küken mit viel Ruhe und Aufmerksamkeit auf.
+              Saubere Haltung, gutes Futter und ehrliche Beratung gehören dazu —
+              damit dein Start gelingt.
+            </p>
           </div>
-        </aside>
+          <div class="facts">
+            <div class="fact"><strong>Abholung vor Ort</strong><span>Nach Terminabsprache</span></div>
+            <div class="fact"><strong>Beratung inklusive</strong><span>Futter, Wärme, erste Tage</span></div>
+            <div class="fact"><strong>Kleine Mengen</strong><span>Qualität vor Masse</span></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
-    <div class="wrap footer-row">
-      <span>© 2026 Matthias</span>
-      <span>Feedback willkommen — wir iterieren gemeinsam.</span>
+  <footer id="kontakt">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>Kükenhof</h3>
+        <p>Dein Shop für frische Küken.</p>
+        <p>© 2026 Matthias</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <a href="mailto:hallo@kuekenhof.example">hallo@kuekenhof.example</a>
+        <p>Telefon auf Anfrage</p>
+      </div>
+      <div>
+        <h3>Öffnung</h3>
+        <p>Sa &amp; So · nach Vereinbarung</p>
+        <p>Abholung nur mit Termin</p>
+      </div>
     </div>
   </footer>
 </body>
