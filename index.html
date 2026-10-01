@@ -142,19 +142,254 @@
       gap: 1rem;
     }
     .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
+      background: transparent;
+      border: none;
       border-radius: 1.1rem;
-      overflow: hidden;
+      perspective: 1000px;
+      min-height: 320px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .card:hover .card-inner,
+    .card:focus-within .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 1.1rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
       box-shadow: 0 10px 28px rgba(42, 33, 24, 0.05);
-      display: flex; flex-direction: column;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-front { z-index: 1; }
+    .card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(165deg, #3a2e22 0%, #2a2118 55%, #1f1812 100%);
+      color: #fff8ef;
+      border-color: #4a3b2c;
+      padding: 1.15rem 1.2rem;
+      justify-content: center;
+    }
+    .card-back h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.1rem;
+      color: #ffd989;
+      letter-spacing: -0.01em;
+    }
+    .card-back .back-label {
+      margin: 0 0 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #c9b29a;
+    }
+    .card-back ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+    }
+    .card-back li {
+      margin: 0;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.65rem;
+      background: rgba(255, 248, 239, 0.08);
+      border: 1px solid rgba(237, 217, 192, 0.18);
+      font-size: 0.86rem;
+      line-height: 1.35;
+      color: #fff1dc;
     }
     .card-media {
-      height: 140px;
-      background: linear-gradient(145deg, #fff3d1, #ffd989);
-      display: grid; place-items: center;
-      font-size: 3rem;
+      height: 150px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
     }
+    .chick-fig {
+      position: relative;
+      display: block;
+    }
+    .chick-fig .body {
+      display: block;
+      border-radius: 50% 50% 46% 46%;
+      position: relative;
+      box-shadow: inset -6px -8px 0 rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.12);
+    }
+    .chick-fig .eye {
+      position: absolute;
+      width: 9%;
+      height: 9%;
+      background: #1c140f;
+      border-radius: 50%;
+      top: 38%;
+      box-shadow: 1px 1px 0 #fff8;
+    }
+    .chick-fig .eye.l { left: 30%; }
+    .chick-fig .eye.r { right: 30%; }
+    .chick-fig .beak {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 9px solid #ef7d2e;
+    }
+    .chick-fig .wing {
+      position: absolute;
+      width: 28%;
+      height: 22%;
+      border-radius: 50%;
+      top: 48%;
+      opacity: 0.85;
+    }
+    .chick-fig .wing.l { left: 4%; transform: rotate(-18deg); }
+    .chick-fig .wing.r { right: 4%; transform: rotate(18deg); }
+    .chick-fig .crest {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -8%;
+      width: 34%;
+      height: 22%;
+      border-radius: 50% 50% 40% 40%;
+    }
+    .chick-fig .tuft {
+      position: absolute;
+      left: 50%;
+      top: -18%;
+      transform: translateX(-50%);
+      width: 42%;
+      height: 28%;
+      border-radius: 60% 60% 40% 40%;
+      filter: blur(0.2px);
+    }
+    /* Unique chicks */
+    .chick-sunny .card-media { background: linear-gradient(145deg, #fff3d1, #ffd989); }
+    .chick-sunny .body { width: 78px; height: 78px; background: radial-gradient(circle at 35% 30%, #fff7c8, #ffcc4d 55%, #f0a429); }
+    .chick-sunny .wing { background: #f5b83a; }
+    .chick-pippa .card-media { background: linear-gradient(145deg, #f8d9c4, #e89a6a); }
+    .chick-pippa .body { width: 82px; height: 74px; background: radial-gradient(circle at 35% 30%, #f0a070, #c45c2a 60%, #8f3a18); border-radius: 48% 48% 42% 42%; }
+    .chick-pippa .wing { background: #a84820; }
+    .chick-pippa .beak { border-top-color: #d96520; }
+    .chick-momo .card-media { background: linear-gradient(145deg, #efe6d4, #d9c4a0); }
+    .chick-momo .body { width: 70px; height: 70px; background: radial-gradient(circle at 35% 30%, #f5edd8, #d4b896 55%, #b8956a); }
+    .chick-momo .wing { background: #c4a078; }
+    .chick-luna .card-media { background: linear-gradient(145deg, #e8ecf0, #c5cdd6); }
+    .chick-luna .body { width: 76px; height: 76px; background: radial-gradient(circle at 35% 30%, #f0f2f5, #b8c0c8 50%, #8a949e); }
+    .chick-luna .wing { background: #9aa3ad; }
+    .chick-luna .crest { background: #d0d6dc; top: -4%; height: 14%; width: 40%; }
+    .chick-bruno .card-media { background: linear-gradient(145deg, #ffe0b0, #e8b86a); }
+    .chick-bruno .body { width: 92px; height: 88px; background: radial-gradient(circle at 35% 30%, #ffe2a8, #e0a84a 55%, #c48a28); border-radius: 50%; }
+    .chick-bruno .wing { background: #d49a38; width: 32%; height: 26%; }
+    .chick-mila .card-media { background: linear-gradient(145deg, #4a4a52, #2a2a30); }
+    .chick-mila .body { width: 76px; height: 76px; background: radial-gradient(circle at 35% 30%, #6a6a72, #2e2e34 55%, #1a1a1e); }
+    .chick-mila .wing { background: #3a3a40; }
+    .chick-mila .eye { background: #f5e6a0; box-shadow: none; }
+    .chick-mila .beak { border-top-color: #e09040; }
+    .chick-nori .card-media { background: linear-gradient(145deg, #3d3530, #1a1512); }
+    .chick-nori .body { width: 80px; height: 72px; background: radial-gradient(circle at 35% 30%, #4a4038, #1c1612 60%, #0c0a08); border-radius: 46% 46% 40% 40%; }
+    .chick-nori .wing { background: #2a221c; }
+    .chick-nori .eye { background: #f0d878; box-shadow: none; }
+    .chick-pepper .card-media { background: linear-gradient(145deg, #ddd8d0, #b0aaa0); }
+    .chick-pepper .body {
+      width: 78px; height: 78px;
+      background:
+        repeating-linear-gradient(100deg, #2a2118 0 4px, #e8e0d4 4px 9px),
+        radial-gradient(circle at 35% 30%, #f0ebe3, #c8c0b4);
+      background-blend-mode: multiply;
+    }
+    .chick-pepper .wing { background: repeating-linear-gradient(100deg, #2a2118 0 3px, #d8d0c4 3px 7px); }
+    .chick-flocke .card-media { background: linear-gradient(145deg, #ffffff, #e8e4f0); }
+    .chick-flocke .body {
+      width: 84px; height: 84px;
+      background: radial-gradient(circle at 35% 30%, #ffffff, #f0ecf8 50%, #d8d0e8);
+      filter: blur(0.4px);
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.5), 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .chick-flocke .tuft { background: #f8f4ff; box-shadow: 0 0 8px #fff; }
+    .chick-flocke .wing { background: #ebe6f5; filter: blur(0.5px); }
+    .chick-theo .card-media { background: linear-gradient(145deg, #ffd4a8, #e88848); }
+    .chick-theo .body { width: 74px; height: 78px; background: radial-gradient(circle at 35% 30%, #ffc878, #e87830 55%, #c05018); border-radius: 45% 45% 48% 48%; }
+    .chick-theo .wing { background: #d06020; }
+    .chick-kira .card-media { background: linear-gradient(145deg, #e8dcc8, #c8b090); }
+    .chick-kira .body { width: 96px; height: 86px; background: radial-gradient(circle at 35% 30%, #f0e4d0, #c8b090 50%, #a08868); border-radius: 50% 50% 44% 44%; }
+    .chick-kira .wing { background: #b09878; width: 30%; }
+    .chick-kira .crest { background: #d8c8b0; width: 50%; height: 18%; top: -6%; }
+    .chick-ollie .card-media { background: linear-gradient(145deg, #d4e0e8, #a8c0c8); }
+    .chick-ollie .body { width: 72px; height: 76px; background: radial-gradient(circle at 35% 30%, #e8f0f4, #a8b8c0 55%, #7890a0); }
+    .chick-ollie .wing { background: #90a8b0; }
+    .chick-ollie .crest { background: #b0c8c8; width: 22%; height: 16%; top: -10%; border-radius: 40%; }
+    .chick-bella .card-media { background: linear-gradient(145deg, #f0ebe4, #d0c8bc); }
+    .chick-bella .body {
+      width: 78px; height: 78px;
+      background:
+        radial-gradient(circle at 25% 35%, #2a2118 0 8%, transparent 9%),
+        radial-gradient(circle at 70% 55%, #2a2118 0 6%, transparent 7%),
+        radial-gradient(circle at 45% 70%, #2a2118 0 5%, transparent 6%),
+        radial-gradient(circle at 35% 30%, #f8f4ec, #d8d0c4 55%, #a89888);
+    }
+    .chick-bella .wing { background: #c8bca8; }
+    .chick-finn .card-media { background: linear-gradient(145deg, #d4a878, #a06838); }
+    .chick-finn .body { width: 80px; height: 74px; background: radial-gradient(circle at 35% 30%, #e0b888, #a06840 55%, #704028); border-radius: 48% 48% 42% 42%; }
+    .chick-finn .wing { background: #8a5830; }
+    .chick-finn .beak { border-top-color: #c85820; }
+    .chick-sissi .card-media { background: linear-gradient(145deg, #fce8f0, #e8b8d0); }
+    .chick-sissi .body { width: 64px; height: 64px; background: radial-gradient(circle at 35% 30%, #fff0f5, #e8c0d0 55%, #c890a8); }
+    .chick-sissi .tuft {
+      background: radial-gradient(circle at 50% 80%, #e8b0c8, #c07098);
+      width: 55%; height: 40%; top: -28%;
+      box-shadow: -8px 4px 0 #d898b0, 8px 4px 0 #d898b0;
+    }
+    .chick-sissi .wing { background: #d8a0b8; }
+    .chick-max .card-media { background: linear-gradient(145deg, #ffe9a0, #f0c040); }
+    .chick-max .body { width: 68px; height: 80px; background: radial-gradient(circle at 35% 28%, #fff0b0, #f0c848 50%, #d0a020); border-radius: 42% 42% 48% 48%; }
+    .chick-max .wing { background: #e0b830; width: 24%; height: 18%; top: 42%; }
+    .chick-ellie .card-media { background: linear-gradient(145deg, #e8e8e8, #909090); }
+    .chick-ellie .body {
+      width: 78px; height: 78px;
+      background:
+        repeating-conic-gradient(from 20deg, #1c140f 0 12deg, #f0ece4 12deg 24deg);
+      border-radius: 50%;
+    }
+    .chick-ellie .wing { background: repeating-linear-gradient(45deg, #1c140f 0 3px, #e8e0d8 3px 6px); }
+    .chick-hugo .card-media { background: linear-gradient(145deg, #ffe8c8, #f0c888); }
+    .chick-hugo .body {
+      width: 98px; height: 98px;
+      background: radial-gradient(circle at 35% 30%, #fff0d8, #f0c878 50%, #d0a050);
+      border-radius: 50%;
+      box-shadow: 0 0 0 10px rgba(255, 232, 200, 0.55), 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .chick-hugo .wing { background: #e0b868; width: 34%; height: 28%; filter: blur(0.3px); }
+    .chick-nala .card-media { background: linear-gradient(145deg, #e8a060, #a04018); }
+    .chick-nala .body { width: 80px; height: 76px; background: radial-gradient(circle at 35% 30%, #f0a858, #c05020 55%, #802810); }
+    .chick-nala .wing { background: #a03818; }
+    .chick-nala .beak { border-top-color: #e07028; }
+    .chick-zuzu .card-media { background: linear-gradient(145deg, #d8e8e0, #88b0a0); }
+    .chick-zuzu .body { width: 70px; height: 72px; background: radial-gradient(circle at 35% 30%, #e8f0e8, #a0c0b0 55%, #608878); }
+    .chick-zuzu .tuft {
+      background: #88a898;
+      width: 18%; height: 32%; top: -26%;
+      border-radius: 40% 40% 20% 20%;
+      box-shadow: -6px 8px 0 #709888, 6px 8px 0 #709888;
+    }
+    .chick-zuzu .wing { background: #789888; }
     .card-body { padding: 1.05rem 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
     .card-body h3 { margin: 0 0 0.25rem; font-size: 1.15rem; }
     .price {
@@ -165,38 +400,9 @@
       display: inline-block; margin-top: 0.85rem;
       font-size: 0.75rem; font-weight: 700; color: var(--green);
       background: #e8f3eb; padding: 0.25rem 0.55rem; border-radius: 999px;
+      align-self: flex-start;
     }
 
-    .card { position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(42, 33, 24, 0.12);
-    }
-    .card-traits {
-      position: absolute; inset: 0;
-      background: rgba(42, 33, 24, 0.92);
-      color: #fff8ef;
-      padding: 1rem 1.1rem;
-      display: flex; flex-direction: column; justify-content: center;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.2s ease, visibility 0.2s ease;
-      border-radius: 1.1rem;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .card:hover .card-traits,
-    .card:focus-within .card-traits {
-      opacity: 1; visibility: visible;
-    }
-    .card-traits strong {
-      display: block; margin-bottom: 0.55rem;
-      font-size: 0.95rem; color: #ffd989;
-    }
-    .card-traits ul {
-      margin: 0; padding-left: 1.1rem;
-      font-size: 0.88rem; line-height: 1.45; color: #fff1dc;
-    }
-    .card-traits li { margin: 0.2rem 0; }
 
     .about-panel {
       background: var(--surface);
@@ -323,364 +529,704 @@
           <p>Beispielangebote — Preise und Bestände kannst du jederzeit anpassen.</p>
         </div>
         <div class="cards">
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Sunny</strong>
-              <ul>
-              <li>Temperament: neugierig & freundlich</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: liebt Gesellschaft</li>
-              <li>Pflege: einfach für Einsteiger</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Sunny</h3>
-              <p class="price">12 €</p>
-              <p><strong>Leghorn.</strong> Flauschiges gelbes Küken, sehr neugierig und handzahm. Ideal für Familien.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Pippa</strong>
-              <ul>
-              <li>Temperament: aktiv & wach</li>
-              <li>Lautstärke: etwas laut</li>
-              <li>Sozial: Alpha-Tendenz</li>
-              <li>Pflege: viel Auslauf nötig</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Pippa</h3>
-              <p class="price">14 €</p>
-              <p><strong>Rhode Island Red.</strong> Kräftiges Jungtier mit starker Neugier. Gut für den Einstieg in die Haltung.</p>
-              <span class="tag">Wenige übrig</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Momo</strong>
-              <ul>
-              <li>Temperament: ruhig & sanft</li>
-              <li>Lautstärke: leise</li>
-              <li>Sozial: hält sich im Hintergrund</li>
-              <li>Pflege: Wärme besonders wichtig</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Momo</h3>
-              <p class="price">11 €</p>
-              <p><strong>Sussex.</strong> Ruhiges Küken, mag Wärme und Futterpausen. Perfekt für ruhige Ställe.</p>
-              <span class="tag">Vorbestellbar</span>
+          <article class="card chick-sunny" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Sunny</h3>
+                  <p class="price">12 €</p>
+                  <p><strong>Leghorn.</strong> Flauschiges gelbes Küken, sehr neugierig und handzahm. Ideal für Familien.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Sunny">
+                <p class="back-label">Charakter</p>
+                <h3>Sunny</h3>
+                <ul>
+                  <li>Temperament: neugierig & freundlich</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: liebt Gesellschaft</li>
+                  <li>Pflege: einfach für Einsteiger</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Luna</strong>
-              <ul>
-              <li>Temperament: ausgeglichen</li>
-              <li>Lautstärke: niedrig</li>
-              <li>Sozial: sehr verträglich</li>
-              <li>Pflege: mittelschwer</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Luna</h3>
-              <p class="price">13 €</p>
-              <p><strong>Wyandotte.</strong> Silbergraues Flaumküken mit sanftem Temperament und fester Haltung.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Bruno</strong>
-              <ul>
-              <li>Temperament: gemütlich</li>
-              <li>Lautstärke: leise</li>
-              <li>Sozial: kuschelig in der Gruppe</li>
-              <li>Pflege: leicht, mag Ruhe</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Bruno</h3>
-              <p class="price">15 €</p>
-              <p><strong>Orpington.</strong> Plumpes bufffarbenes Küken, gemütlich und sehr zutraulich.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Mila</strong>
-              <ul>
-              <li>Temperament: ausdauernd</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: gut im Schwarm</li>
-              <li>Pflege: robust, wenig Extra</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Mila</h3>
-              <p class="price">12 €</p>
-              <p><strong>Australorp.</strong> Dunkles Flaumküken, wach und ausdauernd — klassische Legehennen-Linie.</p>
-              <span class="tag">Verfügbar</span>
+          <article class="card chick-pippa" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Pippa</h3>
+                  <p class="price">14 €</p>
+                  <p><strong>Rhode Island Red.</strong> Kräftiges Jungtier mit starker Neugier. Gut für den Einstieg in die Haltung.</p>
+                  <span class="tag">Wenige übrig</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Pippa">
+                <p class="back-label">Charakter</p>
+                <h3>Pippa</h3>
+                <ul>
+                  <li>Temperament: aktiv & wach</li>
+                  <li>Lautstärke: etwas laut</li>
+                  <li>Sozial: Alpha-Tendenz</li>
+                  <li>Pflege: viel Auslauf nötig</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Nori</strong>
-              <ul>
-              <li>Temperament: selbstbewusst</li>
-              <li>Lautstärke: mittel–hoch</li>
-              <li>Sozial: bestimmt die Rangordnung</li>
-              <li>Pflege: feste Routine</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Nori</h3>
-              <p class="price">16 €</p>
-              <p><strong>Marans.</strong> Fast schwarzes Küken mit kräftigen Beinen; später dunkle Eier.</p>
-              <span class="tag">Wenige übrig</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Pepper</strong>
-              <ul>
-              <li>Temperament: verspielt</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: Teamplayer</li>
-              <li>Pflege: Beschäftigung gefragt</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Pepper</h3>
-              <p class="price">13 €</p>
-              <p><strong>Plymouth Rock.</strong> Gestreifter Flaum, neugierig und sozial in der Gruppe.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Flocke</strong>
-              <ul>
-              <li>Temperament: zärtlich</li>
-              <li>Lautstärke: leise</li>
-              <li>Sozial: sucht Nähe</li>
-              <li>Pflege: trockene Haltung wichtig</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Flocke</h3>
-              <p class="price">14 €</p>
-              <p><strong>Seidenhuhn.</strong> Seidenweiches Weiß, verspielt und besonders flauschig.</p>
-              <span class="tag">Verfügbar</span>
+          <article class="card chick-momo" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Momo</h3>
+                  <p class="price">11 €</p>
+                  <p><strong>Sussex.</strong> Ruhiges Küken, mag Wärme und Futterpausen. Perfekt für ruhige Ställe.</p>
+                  <span class="tag">Vorbestellbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Momo">
+                <p class="back-label">Charakter</p>
+                <h3>Momo</h3>
+                <ul>
+                  <li>Temperament: ruhig & sanft</li>
+                  <li>Lautstärke: leise</li>
+                  <li>Sozial: hält sich im Hintergrund</li>
+                  <li>Pflege: Wärme besonders wichtig</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Theo</strong>
-              <ul>
-              <li>Temperament: gutmütig</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: freundlich zu Artgenossen</li>
-              <li>Pflege: Standardbedarf</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Theo</h3>
-              <p class="price">12 €</p>
-              <p><strong>New Hampshire.</strong> Rötlich-gelbes Küken, aktiv und gutmütig.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Kira</strong>
-              <ul>
-              <li>Temperament: gelassen</li>
-              <li>Lautstärke: niedrig</li>
-              <li>Sozial: friedlich</li>
-              <li>Pflege: mehr Platz & Futter</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Kira</h3>
-              <p class="price">15 €</p>
-              <p><strong>Brahma.</strong> Großrahmiges Küken mit ruhiger Art — langsam wachsend, robust.</p>
-              <span class="tag">Vorbestellbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Ollie</strong>
-              <ul>
-              <li>Temperament: wachsam</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: eher unabhängig</li>
-              <li>Pflege: sicherer Auslauf</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Ollie</h3>
-              <p class="price">11 €</p>
-              <p><strong>Araucana.</strong> Hellgrauer Flaum; später oft blaue oder grüne Eier.</p>
-              <span class="tag">Verfügbar</span>
+          <article class="card chick-luna" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Luna</h3>
+                  <p class="price">13 €</p>
+                  <p><strong>Wyandotte.</strong> Silbergraues Flaumküken mit sanftem Temperament und fester Haltung.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Luna">
+                <p class="back-label">Charakter</p>
+                <h3>Luna</h3>
+                <ul>
+                  <li>Temperament: ausgeglichen</li>
+                  <li>Lautstärke: niedrig</li>
+                  <li>Sozial: sehr verträglich</li>
+                  <li>Pflege: mittelschwer</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Bella</strong>
-              <ul>
-              <li>Temperament: zutraulich</li>
-              <li>Lautstärke: niedrig–mittel</li>
-              <li>Sozial: menschenbezogen</li>
-              <li>Pflege: leicht handzahm</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Bella</h3>
-              <p class="price">13 €</p>
-              <p><strong>Amrock.</strong> Geschecktes Küken, freundlich und leicht zu handhaben.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Finn</strong>
-              <ul>
-              <li>Temperament: standfest</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: stabile Gruppe</li>
-              <li>Pflege: wetterfest, wenig Drama</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Finn</h3>
-              <p class="price">14 €</p>
-              <p><strong>Barnevelder.</strong> Braun getöntes Flaumküken, ausgeglichen und standfest.</p>
-              <span class="tag">Wenige übrig</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Sissi</strong>
-              <ul>
-              <li>Temperament: lebhaft & scheu</li>
-              <li>Lautstärke: hoch</li>
-              <li>Sozial: kleine Gruppen besser</li>
-              <li>Pflege: Schutz vor Nässe</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Sissi</h3>
-              <p class="price">17 €</p>
-              <p><strong>Paduaner.</strong> Schmuckrasse mit Haube — klein, lebhaft und etwas scheu.</p>
-              <span class="tag">Verfügbar</span>
+          <article class="card chick-bruno" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Bruno</h3>
+                  <p class="price">15 €</p>
+                  <p><strong>Orpington.</strong> Plumpes bufffarbenes Küken, gemütlich und sehr zutraulich.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Bruno">
+                <p class="back-label">Charakter</p>
+                <h3>Bruno</h3>
+                <ul>
+                  <li>Temperament: gemütlich</li>
+                  <li>Lautstärke: leise</li>
+                  <li>Sozial: kuschelig in der Gruppe</li>
+                  <li>Pflege: leicht, mag Ruhe</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Max</strong>
-              <ul>
-              <li>Temperament: flink</li>
-              <li>Lautstärke: etwas laut</li>
-              <li>Sozial: dominant möglich</li>
-              <li>Pflege: viel Bewegung</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Max</h3>
-              <p class="price">12 €</p>
-              <p><strong>Italiener.</strong> Schlankes gelbes Küken, schnell und wachsam.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Ellie</strong>
-              <ul>
-              <li>Temperament: gesellig</li>
-              <li>Lautstärke: lautfreudig</li>
-              <li>Sozial: braucht Schwarm</li>
-              <li>Pflege: Beschäftigung & Platz</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Ellie</h3>
-              <p class="price">13 €</p>
-              <p><strong>Dominikaner.</strong> Schwarz-weiß gescheckt, sozial und lautfreudig.</p>
-              <span class="tag">Verfügbar</span>
-            </div>
-          </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Hugo</strong>
-              <ul>
-              <li>Temperament: verschmust</li>
-              <li>Lautstärke: sehr leise</li>
-              <li>Sozial: anhänglich</li>
-              <li>Pflege: Wärme & weiche Einstreu</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐥</div>
-            <div class="card-body">
-              <h3>Hugo</h3>
-              <p class="price">18 €</p>
-              <p><strong>Cochin.</strong> Sehr flauschig und rund — liebt Wärme und ruhige Ecken.</p>
-              <span class="tag">Wenige übrig</span>
+          <article class="card chick-mila" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Mila</h3>
+                  <p class="price">12 €</p>
+                  <p><strong>Australorp.</strong> Dunkles Flaumküken, wach und ausdauernd — klassische Legehennen-Linie.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Mila">
+                <p class="back-label">Charakter</p>
+                <h3>Mila</h3>
+                <ul>
+                  <li>Temperament: ausdauernd</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: gut im Schwarm</li>
+                  <li>Pflege: robust, wenig Extra</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Nala</strong>
-              <ul>
-              <li>Temperament: robust</li>
-              <li>Lautstärke: mittel</li>
-              <li>Sozial: unkompliziert</li>
-              <li>Pflege: guter Appetit einplanen</li>
-              </ul>
-            </div>
-            <div class="card-media" aria-hidden="true">🐣</div>
-            <div class="card-body">
-              <h3>Nala</h3>
-              <p class="price">14 €</p>
-              <p><strong>Welsumer.</strong> Rotbraunes Küken, robust und mit starkem Appetit.</p>
-              <span class="tag">Verfügbar</span>
+          <article class="card chick-nori" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Nori</h3>
+                  <p class="price">16 €</p>
+                  <p><strong>Marans.</strong> Fast schwarzes Küken mit kräftigen Beinen; später dunkle Eier.</p>
+                  <span class="tag">Wenige übrig</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Nori">
+                <p class="back-label">Charakter</p>
+                <h3>Nori</h3>
+                <ul>
+                  <li>Temperament: selbstbewusst</li>
+                  <li>Lautstärke: mittel–hoch</li>
+                  <li>Sozial: bestimmt die Rangordnung</li>
+                  <li>Pflege: feste Routine</li>
+                </ul>
+              </div>
             </div>
           </article>
-          <article class="card" tabindex="0">
-            <div class="card-traits" aria-hidden="true">
-              <strong>Charakter · Zuzu</strong>
-              <ul>
-              <li>Temperament: charaktervoll</li>
-              <li>Lautstärke: hoch</li>
-              <li>Sozial: flink & wach</li>
-              <li>Pflege: sichere Einzäunung</li>
-              </ul>
+          <article class="card chick-pepper" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Pepper</h3>
+                  <p class="price">13 €</p>
+                  <p><strong>Plymouth Rock.</strong> Gestreifter Flaum, neugierig und sozial in der Gruppe.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Pepper">
+                <p class="back-label">Charakter</p>
+                <h3>Pepper</h3>
+                <ul>
+                  <li>Temperament: verspielt</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: Teamplayer</li>
+                  <li>Pflege: Beschäftigung gefragt</li>
+                </ul>
+              </div>
             </div>
-            <div class="card-media" aria-hidden="true">🐤</div>
-            <div class="card-body">
-              <h3>Zuzu</h3>
-              <p class="price">15 €</p>
-              <p><strong>Appenzeller Spitzhauben.</strong> Alpenrasse mit Mütze — wach, flink und charaktervoll.</p>
-              <span class="tag">Vorbestellbar</span>
+          </article>
+          <article class="card chick-flocke" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Flocke</h3>
+                  <p class="price">14 €</p>
+                  <p><strong>Seidenhuhn.</strong> Seidenweiches Weiß, verspielt und besonders flauschig.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Flocke">
+                <p class="back-label">Charakter</p>
+                <h3>Flocke</h3>
+                <ul>
+                  <li>Temperament: zärtlich</li>
+                  <li>Lautstärke: leise</li>
+                  <li>Sozial: sucht Nähe</li>
+                  <li>Pflege: trockene Haltung wichtig</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-theo" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Theo</h3>
+                  <p class="price">12 €</p>
+                  <p><strong>New Hampshire.</strong> Rötlich-gelbes Küken, aktiv und gutmütig.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Theo">
+                <p class="back-label">Charakter</p>
+                <h3>Theo</h3>
+                <ul>
+                  <li>Temperament: gutmütig</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: freundlich zu Artgenossen</li>
+                  <li>Pflege: Standardbedarf</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-kira" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Kira</h3>
+                  <p class="price">15 €</p>
+                  <p><strong>Brahma.</strong> Großrahmiges Küken mit ruhiger Art — langsam wachsend, robust.</p>
+                  <span class="tag">Vorbestellbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Kira">
+                <p class="back-label">Charakter</p>
+                <h3>Kira</h3>
+                <ul>
+                  <li>Temperament: gelassen</li>
+                  <li>Lautstärke: niedrig</li>
+                  <li>Sozial: friedlich</li>
+                  <li>Pflege: mehr Platz & Futter</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-ollie" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Ollie</h3>
+                  <p class="price">11 €</p>
+                  <p><strong>Araucana.</strong> Hellgrauer Flaum; später oft blaue oder grüne Eier.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Ollie">
+                <p class="back-label">Charakter</p>
+                <h3>Ollie</h3>
+                <ul>
+                  <li>Temperament: wachsam</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: eher unabhängig</li>
+                  <li>Pflege: sicherer Auslauf</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-bella" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Bella</h3>
+                  <p class="price">13 €</p>
+                  <p><strong>Amrock.</strong> Geschecktes Küken, freundlich und leicht zu handhaben.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Bella">
+                <p class="back-label">Charakter</p>
+                <h3>Bella</h3>
+                <ul>
+                  <li>Temperament: zutraulich</li>
+                  <li>Lautstärke: niedrig–mittel</li>
+                  <li>Sozial: menschenbezogen</li>
+                  <li>Pflege: leicht handzahm</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-finn" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Finn</h3>
+                  <p class="price">14 €</p>
+                  <p><strong>Barnevelder.</strong> Braun getöntes Flaumküken, ausgeglichen und standfest.</p>
+                  <span class="tag">Wenige übrig</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Finn">
+                <p class="back-label">Charakter</p>
+                <h3>Finn</h3>
+                <ul>
+                  <li>Temperament: standfest</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: stabile Gruppe</li>
+                  <li>Pflege: wetterfest, wenig Drama</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-sissi" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Sissi</h3>
+                  <p class="price">17 €</p>
+                  <p><strong>Paduaner.</strong> Schmuckrasse mit Haube — klein, lebhaft und etwas scheu.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Sissi">
+                <p class="back-label">Charakter</p>
+                <h3>Sissi</h3>
+                <ul>
+                  <li>Temperament: lebhaft & scheu</li>
+                  <li>Lautstärke: hoch</li>
+                  <li>Sozial: kleine Gruppen besser</li>
+                  <li>Pflege: Schutz vor Nässe</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-max" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Max</h3>
+                  <p class="price">12 €</p>
+                  <p><strong>Italiener.</strong> Schlankes gelbes Küken, schnell und wachsam.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Max">
+                <p class="back-label">Charakter</p>
+                <h3>Max</h3>
+                <ul>
+                  <li>Temperament: flink</li>
+                  <li>Lautstärke: etwas laut</li>
+                  <li>Sozial: dominant möglich</li>
+                  <li>Pflege: viel Bewegung</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-ellie" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Ellie</h3>
+                  <p class="price">13 €</p>
+                  <p><strong>Dominikaner.</strong> Schwarz-weiß gescheckt, sozial und lautfreudig.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Ellie">
+                <p class="back-label">Charakter</p>
+                <h3>Ellie</h3>
+                <ul>
+                  <li>Temperament: gesellig</li>
+                  <li>Lautstärke: lautfreudig</li>
+                  <li>Sozial: braucht Schwarm</li>
+                  <li>Pflege: Beschäftigung & Platz</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-hugo" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Hugo</h3>
+                  <p class="price">18 €</p>
+                  <p><strong>Cochin.</strong> Sehr flauschig und rund — liebt Wärme und ruhige Ecken.</p>
+                  <span class="tag">Wenige übrig</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Hugo">
+                <p class="back-label">Charakter</p>
+                <h3>Hugo</h3>
+                <ul>
+                  <li>Temperament: verschmust</li>
+                  <li>Lautstärke: sehr leise</li>
+                  <li>Sozial: anhänglich</li>
+                  <li>Pflege: Wärme & weiche Einstreu</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-nala" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Nala</h3>
+                  <p class="price">14 €</p>
+                  <p><strong>Welsumer.</strong> Rotbraunes Küken, robust und mit starkem Appetit.</p>
+                  <span class="tag">Verfügbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Nala">
+                <p class="back-label">Charakter</p>
+                <h3>Nala</h3>
+                <ul>
+                  <li>Temperament: robust</li>
+                  <li>Lautstärke: mittel</li>
+                  <li>Sozial: unkompliziert</li>
+                  <li>Pflege: guter Appetit einplanen</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card chick-zuzu" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-front">
+                <div class="card-media" aria-hidden="true">
+                  <span class="chick-fig">
+                    <span class="tuft"></span>
+                    <span class="crest"></span>
+                    <span class="body">
+                      <span class="eye l"></span>
+                      <span class="eye r"></span>
+                      <span class="beak"></span>
+                      <span class="wing l"></span>
+                      <span class="wing r"></span>
+                    </span>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Zuzu</h3>
+                  <p class="price">15 €</p>
+                  <p><strong>Appenzeller Spitzhauben.</strong> Alpenrasse mit Mütze — wach, flink und charaktervoll.</p>
+                  <span class="tag">Vorbestellbar</span>
+                </div>
+              </div>
+              <div class="card-face card-back" aria-label="Charakterzüge von Zuzu">
+                <p class="back-label">Charakter</p>
+                <h3>Zuzu</h3>
+                <ul>
+                  <li>Temperament: charaktervoll</li>
+                  <li>Lautstärke: hoch</li>
+                  <li>Sozial: flink & wach</li>
+                  <li>Pflege: sichere Einzäunung</li>
+                </ul>
+              </div>
             </div>
           </article>
         </div>
