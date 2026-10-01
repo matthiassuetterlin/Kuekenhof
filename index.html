@@ -1,1 +1,234 @@
-html <!DOCTYPE html> <html> <head> <title>Website</title> </head> <body> <h1>Hallo Welt</h1> <p>Das ist meine erste Website.</p> </body> </html> Der Block sollte jetzt als Code mit allen Klammern dastehen. Kannst du ihn sehen?
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matthias — Website</title>
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --surface: #ffffff;
+      --ink: #1c1b19;
+      --muted: #5c5a55;
+      --line: #e4e1da;
+      --accent: #2f5d50;
+      --accent-soft: #e7f0ec;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap {
+      width: min(960px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(246, 245, 242, 0.9);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    .nav-links a { color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+    .hero {
+      padding: 5.5rem 0 4rem;
+    }
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      box-shadow: 0 12px 40px rgba(28, 27, 25, 0.05);
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    .lead {
+      margin: 0;
+      max-width: 36rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { filter: brightness(1.05); text-decoration: none; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn-ghost:hover { background: #fff; text-decoration: none; }
+    .about {
+      padding: 1rem 0 4.5rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 720px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 0.85rem; font-size: 0.88rem; }
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+    .panel h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    .panel p { margin: 0; color: var(--muted); }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fafaf8;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 2.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top">Matthias</a>
+      <ul class="nav-links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <span class="eyebrow">Personal website</span>
+          <h1>Hallo — willkommen auf meiner Seite.</h1>
+          <p class="lead">
+            Eine schlichte Startseite mit klarer Struktur. Wir können Farbe,
+            Layout und Inhalte Schritt für Schritt anpassen.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#about">Mehr erfahren</a>
+            <a class="btn btn-ghost" href="#contact">Kontakt</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <article class="panel">
+          <h2>Über mich</h2>
+          <p>
+            Hier entsteht eine persönliche Website. Derzeit ist es ein
+            modernes Grundgerüst — Header, Hero, About und Footer —
+            bereit für dein Feedback und die nächsten Design-Ideen.
+          </p>
+        </article>
+        <aside class="panel">
+          <h2>Fokus</h2>
+          <p>Einfach, lesbar und responsive. Neutrale Farben, viel Ruhe.</p>
+          <div class="chips">
+            <span class="chip">Clean layout</span>
+            <span class="chip">Inline CSS</span>
+            <span class="chip">Mobile-friendly</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap footer-row">
+      <span>© 2026 Matthias</span>
+      <span>Feedback willkommen — wir iterieren gemeinsam.</span>
+    </div>
+  </footer>
+</body>
+</html>
